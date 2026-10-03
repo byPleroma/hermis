@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hermis"
+version = "0.1.0"
+description = "Desktop application for AI-assisted text analysis, rewriting, translation and document processing."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "PyQt6>=6.8",
+    "charset-normalizer>=3.3",
+    "google-genai>=2.0",
+    "EbookLib>=0.18",
+    "beautifulsoup4>=4.12",
+    "PyMuPDF>=1.26",
+    "fpdf2>=2.8",
+]
+
+[project.optional-dependencies]
+ocr = ["easyocr>=1.7.2"]
+dev = ["pytest>=8.0", "ruff>=0.9"]
+
+[project.scripts]
+hermis = "hermis.interface:main_entry"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["hermis*"]
+
+[tool.setuptools.package-data]
+hermis = ["assets/*.png"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint]
+ignore = ["BLE001", "S110", "EXE002"]

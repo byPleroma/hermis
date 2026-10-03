@@ -1,0 +1,14 @@
+PyQt6>=6.8
+charset-normalizer>=3.3
+google-genai>=2.0
+EbookLib>=0.18
+beautifulsoup4>=4.12
+PyMuPDF>=1.26
+fpdf2>=2.8
+
+[dev]
+pytest>=8.0
+ruff>=0.9
+
+[ocr]
+easyocr>=1.7.2

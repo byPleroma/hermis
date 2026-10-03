@@ -1,0 +1,2 @@
+[console_scripts]
+hermis = hermis.interface:main_entry
