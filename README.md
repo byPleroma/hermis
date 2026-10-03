@@ -1,118 +1,41 @@
 # Hermis
 
-Hermis is a desktop application for AI-assisted text processing. It provides a PyQt6 graphical interface for rewriting, explaining, translating, summarizing and extracting arguments from documents.
+> **Desktop application for AI-assisted text processing built with PyQt6.**
 
-## Features
+Hermis provides a graphical interface for rewriting, explaining, translating, summarizing, and extracting arguments from various document formats using local models or cloud APIs.
 
-- Local AI through an OpenAI-compatible llama.cpp server.
-- Google Gemini API with optional key rotation.
-- Plain-text files with automatic encoding detection.
-- PDF extraction through PyMuPDF.
-- EPUB extraction through EbookLib and BeautifulSoup.
-- PDF generation through fpdf2.
-- Optional OCR through EasyOCR.
-- Streaming generation and progress reporting in the GUI.
+---
 
-## Requirements
+## ⚡ Features
 
-- Python 3.10 or newer.
-- A desktop environment capable of running Qt 6.
-- For local AI: a running llama.cpp llama-server exposing /v1/chat/completions.
-- For Gemini: a Gemini API key.
+- **🤖 Local AI Engine**: Connects to an OpenAI-compatible `llama.cpp` server (`/v1/chat/completions`).
+- **☁️ Google Gemini Integration**: Supports Gemini API with optional key rotation across multiple tokens.
+- **📄 Document Processing**:
+  - **Plain Text**: Automatic encoding detection.
+  - **PDF**: Text extraction via `PyMuPDF` and generation via `fpdf2`.
+  - **EPUB**: Parsing through `EbookLib` and `BeautifulSoup`.
+- **👁️ Optional OCR**: Optical Character Recognition using `EasyOCR`.
+- **🚀 Responsive UI**: Real-time streaming generation and progress reporting in the PyQt6 GUI.
 
-## Installation
+---
 
-Create an isolated environment and install Hermis from the project root:
+## 📋 Requirements
 
-    python3 -m venv .venv
-    source .venv/bin/activate
-    python -m pip install --upgrade pip
-    python -m pip install -e .
+- **Python**: `3.10` or newer.
+- **Desktop Environment**: Any OS capable of running Qt 6 (Linux, macOS, Windows).
+- **Local AI (Optional)**: A running `llama-server` exposing `/v1/chat/completions`.
+- **Gemini (Optional)**: A Google Gemini API key.
 
-Run it with:
+---
 
-    hermis
+## 📦 Installation
 
-or:
+Create an isolated environment and install Hermis in editable mode from the project root.
 
-    python -m hermis
+### Linux / macOS (Bash)
 
-Windows PowerShell:
-
-    py -m venv .venv
-    .venv\Scripts\Activate.ps1
-    python -m pip install --upgrade pip
-    python -m pip install -e .
-    hermis
-
-## Optional OCR
-
-OCR is intentionally not part of the default installation because EasyOCR brings a significantly heavier machine-learning stack.
-
-    python -m pip install -e ".[ocr]"
-
-Hermis will still read native PDF text when OCR is not installed.
-
-## Configuration
-
-Hermis does not require API keys to be stored inside the repository.
-
-For Gemini, set:
-
-    export GEMINI_API_KEY="your-key"
-
-For multiple keys, put them in a local ignored file such as .local/keys.txt:
-
-    API_KEY_1="your-key"
-    API_KEY_2="your-key"
-
-You can also point Hermis to another file with HERMIS_KEYS_FILE=/path/to/keys.txt.
-
-For llama.cpp:
-
-    export HERMIS_LLAMACPP_URL="http://127.0.0.1:8080"
-    export HERMIS_LLAMACPP_MODEL="your-model-id"
-
-Generated files are written to ~/Hermis/Output by default. Override this with HERMIS_OUTPUT_DIR.
-
-## Security
-
-Never commit API keys, tokens, local configuration, generated documents or IDE state. The repository .gitignore excludes these paths by default.
-
-If a key was ever exposed publicly, revoke it and create a replacement before using it again.
-
-## Development
-
-Install development tools:
-
-    python -m pip install -e ".[dev]"
-
-Run tests:
-
-    pytest
-
-Compile-check the package:
-
-    python -m compileall -q hermis
-
-Lint:
-
-    ruff check hermis tests
-
-## Project layout
-
-    hermis/
-        __init__.py
-        __main__.py
-        interface.py
-        main.py
-        rawtxt.py
-        cosmetics.py
-        textutils.py
-    tests/
-    pyproject.toml
-    README.md
-    .gitignore
-    .env.example
-
-The application modules remain close to the existing implementation to reduce migration risk while providing a conventional installable package layout.
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -e .
